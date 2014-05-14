@@ -1,0 +1,33 @@
+<TABLE style="WIDTH: 100%" summary="">
+<TBODY>
+<TR>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD></TD></TR>
+<TR>
+<TD>
+
+<div align="center"><IMG ID="PicturePlaceholder" align="center" style="height:300px;" src="/_layouts/images/blank.GIF" /><script type="text/javascript">
+
+var PictureLibraryURL = "/Shanghai/_vti_bin/owssvr.dll?Cmd=Display&XMLDATA=TRUE&List=%7BB07EA484%2DBAAB%2D4A20%2D93B0%2DA93B78EC872B%7D";
+function DisplayPicture(xmlhttpobject)
+{var xmlDoc = xmlhttpobject.responseXML;var ListItems = xmlDoc.getElementsByTagName("z:row")||xmlDoc.getElementsByTagNameNS("*","row");
+var SelectedItem = Math.floor(Math.random()* ListItems.length);PictureURL = "/" + ListItems[SelectedItem].getAttribute("ows_RequiredField");
+PictureURL=PictureURL.replace(/\.([^\.]+)$/, "_$1") + ".jpg";PictureURL=PictureURL.replace(/\/([^\/]+)$/,"/_w/"+"$1");
+document.getElementById("PicturePlaceholder").src= PictureURL;
+}
+try 
+{var xmlhttp = new XMLHttpRequest();}
+catch(e) 
+{try {var xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");}
+catch(e) {try {var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");} 
+catch(e) {alert("Your browser does not support XMLHTTP.");}
+}}
+xmlhttp.onreadystatechange=function()
+{if (xmlhttp.readyState==4){if (xmlhttp.status==200){setInterval ( "DisplayPicture(xmlhttp)",6000);}else{alert("Problem retrieving XML data");}
+}};
+xmlhttp.open("GET",PictureLibraryURL,true);xmlhttp.send(null);</script>
+
+</div></TD></TR>
+<TR>
+<TD>&nbsp;</TD></TR></TBODY></TABLE>
