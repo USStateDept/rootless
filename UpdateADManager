@@ -1,0 +1,23 @@
+Set objConnection = CreateObject("ADODB.Connection")
+Set objCommand =   CreateObject("ADODB.Command")
+objConnection.Provider = "ADsDSOObject"
+objConnection.Open "Active Directory Provider"
+Set objCommand.ActiveConnection = objConnection
+
+objCommand.Properties("Page Size") = 1000
+objCommand.Properties("Searchscope") = ADS_SCOPE_SUBTREE 
+
+objCommand.CommandText = _
+    "SELECT * FROM 'LDAP://OU=BLDG B,OU=Workstations,OU=YOUR_OU,DC=eap,DC=state,dc=sbu' WHERE objectCategory='computer'"  
+Set objRecordSet = objCommand.Execute
+
+objRecordSet.MoveFirst
+
+Do Until objRecordSet.EOF
+     wscript.echo objRecordSet.Fields("Name").Value
+     Set objComputer = GetObject (objRecordSet.Fields("Name").Value)
+     objComputer.Put "managedby", "CN=LastName\, First Initial,OU=Users,OU=YOUR_OU,DC=eap,DC=state,DC=sbu"
+    
+     objComputer.SetInfo
+    objRecordSet.MoveNext
+Loop
